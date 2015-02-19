@@ -1,0 +1,202 @@
+<style type="text/css">
+    .upbtn {
+        display: inline-block;
+        zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+        *display: inline;
+        vertical-align: baseline;
+        margin: 0 2px;
+        outline: none;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font: 14px/100% Arial, Helvetica, sans-serif;
+        padding: .5em 2em .55em;
+        text-shadow: 0 1px 1px rgba(0,0,0,.3);
+        -webkit-border-radius: .5em;
+        -moz-border-radius: .5em;
+        border-radius: .5em;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+        -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.20);
+    }
+
+    .box-button {
+        background: rgb(76, 142, 250);
+        border: 0;
+        border-radius: 3px;
+        box-sizing: border-box;
+        color: black;
+        cursor: pointer;
+        float: right;
+        font-size: .800em;
+        height: 22px;
+        margin:1px 7px 0px 0px;
+        padding:0px 10px 0px 10px;
+        transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .c111{
+        margin: 5px;
+        border: 5px solid darkgreen;
+    }
+
+
+
+</style>
+
+<script type="text/javascript" src="/icity-portal-archetype/js/jquery/jquery-1.8.0.min.js"></script>
+
+<link type="text/css" rel="stylesheet" media="screen" href="http://localhost:8080/icity-portal-archetype/js/jBox/Skins/Default/jbox.css"/>
+<link rel="stylesheet" type="text/css" href="/icity-portal-archetype/js/jBox/Skins/Default/jbox.css"/>
+<script type="text/javascript" src="/icity-portal-archetype/js/jBox/jquery.jBox-2.3.min.js"></script>
+<script type="text/javascript" src="/icity-portal-archetype/js/jBox/i18n/jquery.jBox-zh-CN.js"></script>
+
+<script type="text/javascript" src="/icity-portal-archetype/upload/file/js/variables"></script>
+
+
+<script type="text/javascript" src="/icity-portal-archetype/js/uploadfile-2.0.0.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#123").xllUploadFile({
+            fileUploadType:"image",
+            fileUploadButtonClass:"upbtn",
+            imagePreviewElementClass:"c111",
+            buttons:{
+                clear:"clear"
+            }
+        });
+        $("#a").xllUploadFile({
+            fileUploadStrategy:"abc",
+            buttons:{
+                upload:"upload"
+            }
+        });
+
+    });
+
+    function showDialog(width, height, iframe, title, content,dialogId) {
+        if(dialogId==null){
+            dialogId="dialog"+parseInt(100*Math.random());
+        }
+        var titleAreaHeight = 28;
+        var dialogWidth = width;
+        var dialogHeight = height + titleAreaHeight;
+
+        var dialogLeft = (document.documentElement.clientWidth - dialogWidth) / 2;
+        var dialogTop = ( document.documentElement.clientHeight  - dialogHeight) / 3;
+
+        var contentAreaWidth = dialogWidth;
+        var contentAreaHeight = height;
+        if(iframe) {
+            var iframe = "<iframe style='width:" + contentAreaWidth + "px;height:" + contentAreaHeight + "px;' scrolling='auto' frameborder='0' src='" + content + "'></iframe>";
+            content = iframe;
+        }
+
+        var closeButton = "<a href='javascript:clossDialog(\""+dialogId+"\")' onMouseOver=\"this.style.color='#FDE8FE';\" onmouseout=\"this.style.color='black'\" style='float:right;color: black;text-decoration: none;margin-top: 3px;margin-right:3px;padding-right: 2px;padding-left: 2px;'>x</a>";
+
+        var title = "<div style='background: url(/img/admin/table_class.gif);line-height:23px;height:" + titleAreaHeight + "px'><div style='float:left;margin-top: 3px;margin-left: 3px;color:#555555;font-weight: bold;'>" + title + "</div>" + closeButton + "</div>";
+
+        var html = "<div style='background-color:white;color: #ffffff;width:" + dialogWidth + "px;height:" + dialogHeight + "px;border: 1px solid #BFD8E0;position:absolute;left:" + dialogLeft + "px;top:" + dialogTop + "px;'>" + title + "<div style='height:" + contentAreaHeight + "px'>" + content + "</div><div>";
+
+        var div=document.createElement("div");
+        div.id=dialogId;
+        document.body.appendChild(div);
+        div.innerHTML=html;
+    }
+
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        $("#box-iframe").load(function(){
+             $("#box-content-loading").css("display","none");
+             $("#box-content").css("position","static");
+             $("#box-content").css("left","0px");
+        });
+
+        $("#box-button-close").mouseenter(function(){
+            $(this).css("background-color","white");
+            $(this).css("color","black");
+        });
+
+        $("#box-button-close").mouseleave(function(){
+            $(this).css("background-color","");
+            $(this).css("color","#888888");
+        });
+
+        $("#box-button-close").click(function(){
+            $("#box-fade").remove();
+            $("#box").remove();
+        });
+
+    });
+
+
+
+</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!--<input type="text" name="image1" fileUploadType="image" imagePreviewElementClass="c111">
+<input type="text" name="file" fileUploadType="file">
+<input type="text" name="image2" fileUploadType="image" fileUploadButtonClass="upbtn" value="image/20141126113241-46512.png">
+<input type="text" name="file" fileUploadType="file" value="123">
+
+<input type="text" id="123">
+<input type="text" id="a" value="abc">
+
+<input type="text" id="a" value="abc">
+
+<button onclick="showDialog(300,100,false,'abc')">button</button>-->
+
+<input type="text" id="123">
+
+<input type="text" name="image2" fileUploadType="image" fileUploadButtonClass="upbtn" value="image/20141126113241-46512.png">
+
+<div id="box-1" style="z-index:9997;">
+<div id="box-fade" style="position:absolute;background:#000;width:100%;height:100%;z-index:9000;top:0;left:0;right: 0px; bottom: 0px;filter:alpha(opacity=10);-moz-opacity:0.1;opacity:0.1;"></div>
+<table id="box" style="top:0px;left: 0px;position: absolute;width: 100%;height: 100%;z-index:9999;filter:alpha(opacity=100);-moz-opacity:1.0;opacity:1.0;">
+<tr>
+<td align="center">
+    <table id="box" border="0" cellpadding="0" cellspacing="0" style="margin:0px;padding:0px;border:none;" width="362px">
+        <tbody>
+        <tr>
+            <td style="margin:0px;padding:0px;border:none;border-radius:5px 0 0 0;width:5px;height:5px;background: none repeat scroll 0 0 #000000;filter:alpha(opacity=20);-moz-opacity:0.2;opacity:0.2;"></td>
+            <td style="margin:0px;padding:0px;border:none;height:5px;overflow: hidden;background: none repeat scroll 0 0 #000000;filter:alpha(opacity=20);-moz-opacity:0.2;opacity:0.2;"></td>
+            <td style="margin:0px;padding:0px;border:none;border-radius:0 5px 0 0;width:5px;height:5px;background: none repeat scroll 0 0 #000000;filter:alpha(opacity=20);-moz-opacity:0.2;opacity:0.2;"></td>
+        </tr>
+        <tr>
+            <td style="margin:0px;padding:0px;border:none;background: none repeat scroll 0 0 #000000;filter:alpha(opacity=20);-moz-opacity:0.2;opacity:0.2;"></td>
+            <td valign="top" style="margin:0px;padding:0px;border:none;">
+                <div style="width:350px;height: auto;background-color:#ffffff;border:1px solid #999999;">
+                    <div id="box-content-loading" style="width:350px;height: 67px; text-align: center;">
+                        <table style="width: 100%;height: 100%;">
+                            <tr>
+                                <td align="center"><img src="/icity-portal-archetype/img/uploading.gif"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="box-content" style="width:350px; height:67px;overflow-x: hidden; overflow-y: hidden; position: absolute; left: -10000px">
+                        <iframe id="box-iframe" name="box-iframe" style="display: inline;" width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" src="/icity-portal-archetype/upload/file/box?fileUploadStrategyId=image&amp;writeBackElementId=file-upload-element-73" ></iframe>
+                    </div>
+                    <div style="height:25px;padding:5px 0 5px 0;text-align:right;border-top:1px solid #CCCCCC;background-color: #EEEEEE;">
+                        <button id="box-button-close" style="padding:0px 10px 0px 10px;border:#AAAAAA 1px solid;color:#888888;border-radius:3px 3px 3px 3px;margin:1px 7px 0px 0px;height:22px;cursor:pointer;">关闭</button>
+                    </div>
+                </div>
+            </td>
+            <td style="margin:0px;padding:0px;border:none;background: none repeat scroll 0 0 #000000;filter:alpha(opacity=20);-moz-opacity:0.2;opacity:0.2;"></td>
+        </tr>
+        <tr>
+            <td style="margin:0px;padding:0px;border:none;border-radius:0 0 0 5px; width:5px; height:5px;background: none repeat scroll 0 0 #000000;filter:alpha(opacity=20);-moz-opacity:0.2;opacity:0.2;"></td>
+            <td style="margin:0px;padding:0px;border:none;height:5px;overflow: hidden;background: none repeat scroll 0 0 #000000;filter:alpha(opacity=20);-moz-opacity:0.2;opacity:0.2;"></td>
+            <td style="margin:0px;padding:0px;border:none;border-radius:0 0 5px 0; width:5px; height:5px;background: none repeat scroll 0 0 #000000;filter:alpha(opacity=20);-moz-opacity:0.2;opacity:0.2;"></td>
+        </tr>
+        </tbody>
+    </table>
+</td>
+</tr>
+</table>
+</div>
+
