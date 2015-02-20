@@ -35,11 +35,6 @@ public class DemoController extends SimpleController<Demo> {
 		this.demoDao = demoDao;
 	}
 
-	@Override
-	protected void verifyEntity(Demo entity, ModelAndView model) throws InvalidEntityException {
-		throw new InvalidEntityException("abc");
-	}
-
 	@RequestMapping("test")
 	public View test(HttpServletRequest request, HttpServletResponse response,Model model) {
 		model.addAttribute("aaa", "123");
